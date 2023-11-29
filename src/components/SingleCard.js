@@ -1,9 +1,11 @@
 import React from "react";
 import "./SIngleCard.css";
 
-export default function SingleCard({ card, handleChoise, flipped }) {
+export default function SingleCard({ card, handleChoise, flipped, disabled }) {
   const handleClick = (e) => {
-    handleChoise(card);
+    if(!disabled){
+        handleChoise(card);
+    }
   };
 
   return (
@@ -15,6 +17,7 @@ export default function SingleCard({ card, handleChoise, flipped }) {
           alt="card back"
           className="back"
           onClick={handleClick}
+         
         />
       </div>
     </div>
