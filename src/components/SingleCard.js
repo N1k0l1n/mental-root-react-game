@@ -3,8 +3,8 @@ import "./SIngleCard.css";
 
 export default function SingleCard({ card, handleChoise, flipped, disabled }) {
   const handleClick = (e) => {
-    if(!disabled){
-        handleChoise(card);
+    if (!disabled) {
+      handleChoise(card);
     }
   };
 
@@ -17,7 +17,6 @@ export default function SingleCard({ card, handleChoise, flipped, disabled }) {
           alt="card back"
           className="back"
           onClick={handleClick}
-         
         />
       </div>
     </div>

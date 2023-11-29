@@ -24,6 +24,8 @@ function App() {
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
 
+    setChoiseOne(null);
+    setChoiseTwo(null);
     setCards(shuffledCards);
     setTurns(0);
   };
@@ -35,9 +37,8 @@ function App() {
 
   // compare 2 selected cards
   useEffect(() => {
-
     if (choiseOne && choiseTwo) {
-      setDisabled(true)
+      setDisabled(true);
       if (choiseOne.src === choiseTwo.src) {
         setCards((prevCards) => {
           return prevCards.map((card) => {
@@ -56,13 +57,17 @@ function App() {
   }, [choiseOne, choiseTwo]);
 
   //reset choise & increment turn
-
   const resetTurn = () => {
     setChoiseOne(null);
     setChoiseTwo(null);
     setTurns((prevTurns) => prevTurns + 1);
     setDisabled(false);
   };
+
+  //start a new game automatically
+  useEffect(() => {
+    shuffleCards();
+  }, []);
 
   return (
     <div className="App">
@@ -76,10 +81,11 @@ function App() {
             card={card}
             handleChoise={handleChoise}
             flipped={card === choiseOne || card === choiseTwo || card.matched}
-            disabled = {disabled}
+            disabled={disabled}
           />
         ))}
       </div>
+      <p>Turns : {turns}</p>
     </div>
   );
 }
